@@ -1,8 +1,5 @@
 <h1>Liste des tâches à réaliser</h1>
 
 <ul class="list-group">
-  <li class="list-group-item">{{todoOne}}</li>
-  <li class="list-group-item">{{todoTwo}}</li>
-  <li class="list-group-item">{{todoThree}}</li>
-  <li class="list-group-item">{{todoFour}}</li>
+  <li class="list-group-item" *ngFor="let todo of todos">{{todo}}</li>
 </ul>

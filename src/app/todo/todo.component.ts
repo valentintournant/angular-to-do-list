@@ -12,4 +12,6 @@ export class TodoComponent{
   todoTwo: string = "Projet 2";
   todoThree: string = "Projet 3";
   todoFour: string = "Projet 4";
+
+  todos: string[] = ["Projet t1", "Projet t2", "Projet t3", "Projet t4", "Projets T6", "Projet t8"];
 }
