@@ -8,5 +8,8 @@ import { Component } from "@angular/core";
 })
 
 export class TodoComponent{
-
+  todoOne: string = "Projet 1";
+  todoTwo: string = "Projet 2";
+  todoThree: string = "Projet 3";
+  todoFour: string = "Projet 4";
 }
