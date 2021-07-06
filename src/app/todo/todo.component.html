@@ -1,4 +1,6 @@
-<h1>Liste des tâches à réaliser</h1>
+<h1 [ngStyle]="{color:'blue'}"> Liste des tâches à réaliser</h1>
+<h1 [ngClass]="['classe1', 'classe2']"> Liste des tâches à réaliser</h1>
+
 
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let todo of todos, let i = index">
@@ -12,8 +14,14 @@
       <!-- le i permet de connaitre l'élément sur lequel tu cliques c'est du eventbidind-->
       <button type="button" class="btn btn-primary" [disabled]="todo.todoStatus"(click)="onChangeStatus(i)">En cours</button>
       <button type="button" class="btn btn-success" [disabled]="!todo.todoStatus"(click)="onChangeStatus(i)">Terminé</button>
+
+      <!-- Action de modification" -->
+      <button type="button" class="btn btn-danger mr-1" *ngIf="!todo.isModif" (click)="onChangeIsModif(i)">Modifier</button>
+      <button type="button" class="btn btn-success mr-1" *ngIf="todo.isModif" (click)="onChangeIsModif(i)">Modification terminée</button>
+
+      <!-- Ne pas oublier d'importer formModule -->
+      <input *ngIf="todo.isModif" class="form-control" [(ngModel)] = "todo.todoName">
+
     </div>
-
-
   </li>
 </ul>
