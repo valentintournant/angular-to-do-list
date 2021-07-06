@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { TodoService } from "../services/todo.service";
 
 @Component({
   selector: 'my-todo',
@@ -7,56 +8,25 @@ import { Component } from "@angular/core";
 
 })
 
-export class TodoComponent{
+//Permet de savoir quand c'est initialisisé "OnInit"
+export class TodoComponent implements OnInit{
+  today: any;
+  todos: any;
 
-  // todoOne: string = "Projet 1";
-  // todoTwo: string = "Projet 2";
-  // todoThree: string = "Projet 3";
-  // todoFour: string = "Projet 4";
+  constructor(private todoService: TodoService){
 
-  // todos: string[] = ["Projet t1", "Projet t2", "Projet t3", "Projet t4"];
+  }
+  ngOnInit(){
+    this.today = this.todoService.today;
+    this.todos = this.todoService.todos;
 
-  today = new Date();
-
-  todos = [
-    {
-      todoName: "Projet 1",
-      todoStatus: true,
-      image: "http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: "Projet 2",
-      todoStatus: false,
-      image: "http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: "Projet 3",
-      todoStatus: true,
-      image: "http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: "Projet 4",
-      todoStatus: false,
-      image: "http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: "Projet 5",
-      todoStatus: true,
-      image: "http://placehold.it/150",
-      isModif: false
-    },
-  ];
+  }
 
   onChangeStatus(i: number){
-    this.todos[i].todoStatus = !this.todos[i].todoStatus;
+    this.todoService.onChangeStatus(i);
   }
 
   onChangeIsModif(i: any){
-    this.todos[i].isModif = !this.todos[i].isModif;
+    this.todoService.onChangeIsModif(i);
   }
-
 }
