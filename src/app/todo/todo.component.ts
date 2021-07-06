@@ -16,6 +16,8 @@ export class TodoComponent{
 
   // todos: string[] = ["Projet t1", "Projet t2", "Projet t3", "Projet t4"];
 
+  today = new Date();
+
   todos = [
     {
       todoName: "Projet 1",
