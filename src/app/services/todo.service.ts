@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
 
 //décorateur injéctable si dépend d'autres services
-@Injectable()
+//le root permet de ne plus l'inhécter ans le app.module
+@Injectable({
+  providedIn: 'root'
+})
 export class TodoService{
   // todoOne: string = "Projet 1";
   // todoTwo: string = "Projet 2";
