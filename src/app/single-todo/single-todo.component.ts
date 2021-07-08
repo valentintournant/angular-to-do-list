@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-single-todo',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleTodoComponent implements OnInit {
 
-  constructor() { }
+  todo: any;
+  error: any;
+
+
+  constructor(private route : ActivatedRoute, private todoService: TodoService) { }
 
   ngOnInit(): void {
+    const id = +this.route.snapshot.params['id']
+    this.todo = this. todoService.getTodo(id);
+    if(!this.todo) {
+      this.error = "Id incorrecte"
+    }
   }
 
 }

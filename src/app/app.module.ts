@@ -17,6 +17,11 @@ export const ROUTES : Routes = [
   {path: 'todos', component: TodoComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'single-todo/:id', component: SingleTodoComponent},
+  {path: '', component: HomeComponent},
+  {path: '**', pathMatch:'full', redirectTo: 'not-found'}
+
+
 ]
 
 @NgModule({

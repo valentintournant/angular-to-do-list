@@ -28,6 +28,7 @@
       <!-- Action de modification" -->
       <button type="button" class="btn btn-danger mr-1" *ngIf="!todo.isModif" (click)="onChangeIsModif(i)">Modifier</button>
       <button type="button" class="btn btn-success mr-1" *ngIf="todo.isModif" (click)="onChangeIsModif(i)">Modification terminée</button>
+      <button type="button" class="btn btn-success mr-1" (click)="onView(i)">En savoir plus</button>
 
       <!-- Ne pas oublier d'importer formModule -->
       <input *ngIf="todo.isModif" class="form-control" [(ngModel)] = "todo.todoName">
