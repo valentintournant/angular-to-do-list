@@ -20,8 +20,6 @@ export const ROUTES : Routes = [
   {path: 'single-todo/:id', component: SingleTodoComponent},
   {path: '', component: TodoComponent},
   {path: '**', pathMatch:'full', redirectTo: 'not-found'}
-
-
 ]
 
 @NgModule({
