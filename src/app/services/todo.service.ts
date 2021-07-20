@@ -14,9 +14,17 @@ export class TodoService{
 
   today = new Date();
   todos: any;
+  todoSlice: any;
+  // lastUpdate: any;
+  // lastUpdate2: any;
 
 
   constructor() {
+    //si tu sais que la promese va se résoudre à chaques fois :
+    // this.lastUpdate = Promise.resolve(new Date());
+    // this.lastUpdate = Promise.reject("Pas de données disponible actuellement");
+
+    //façon de faire la plus complète.
     this.todos = new Promise((resolve, reject) =>{
       const data = [
         {
@@ -57,6 +65,7 @@ export class TodoService{
       ];
       if(data.length) {
         setTimeout(()=>{
+          this.todoSlice = data;
           resolve(data);
         },2000);
       } else {
@@ -107,16 +116,16 @@ export class TodoService{
   // }
 
   onChangeStatus(i: number){
-    this.todos[i].todoStatus = !this.todos[i].todoStatus;
+    this.todoSlice[i].todoStatus = !this.todoSlice[i].todoStatus;
   }
 
   onChangeIsModif(i: any){
-    this.todos[i].isModif = !this.todos[i].isModif;
+    this.todoSlice[i].isModif = !this.todoSlice[i].isModif;
   }
 
   getTodo(index: number){
-    if(this.todos[index]) {
-      return this.todos[index];
+    if(this.todoSlice[index]) {
+      return this.todoSlice[index];
     }
     return false;
   }

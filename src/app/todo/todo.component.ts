@@ -20,7 +20,13 @@ export class TodoComponent implements OnInit{
   }
   ngOnInit(){
     this.today = this.todoService.today;
-    this.todos = this.todoService.todos;
+    this.todoService.todos
+    .then((todoRecup: any) =>{
+      this.todos = todoRecup;
+    })
+    .catch((error: string) =>{
+      console.log("Erreur : "+ error)
+    });
 
   }
 
