@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import { Todo } from "../models/todo.model";
 //décorateur injéctable si dépend d'autres services
 //le root permet de ne plus l'inhécter ans le app.module
 @Injectable({
@@ -14,7 +15,7 @@ export class TodoService{
   // todos: string[] = ["Projet t1", "Projet t2", "Projet t3", "Projet t4"];
 
   today = new Date();
-  todos: any;
+  todos: Todo[] | any;
   todoSubject = new Subject<any>();
   // todoSlice: any;
   // lastUpdate: any;

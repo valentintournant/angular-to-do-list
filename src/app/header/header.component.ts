@@ -35,8 +35,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   return ()=> clearInterval(interval);
     // });
 
-
-
   //   const salutation = new Observable((observer)=>{
   //     observer.next("hello");
   //     observer.next("world!");
