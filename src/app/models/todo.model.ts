@@ -1,7 +1,7 @@
 export class Todo{
   todoName: string | any;
-  todoStatus: boolean = true;
+  todoStatus: boolean | any;
   description: string | any;
-  isModif: boolean = false;
-  image: string = "http://placeimg.com/300/300/tech";
+  isModif = false;
+  image = "http://placeimg.com/300/300/tech";
 }

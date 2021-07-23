@@ -120,7 +120,6 @@ export class TodoService{
     },3000);
   }
 
-
   emitTodos(){
     this.todoSubject.next(this.todos);
   }
@@ -142,11 +141,6 @@ export class TodoService{
       return this.todos[index];
     }
     return false;
-  }
-
-  addTodo(todo: Todo): void{
-    this.todos.unshift(todo);
-    this.emitTodos();
   }
 
 }
