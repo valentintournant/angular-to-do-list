@@ -143,4 +143,9 @@ export class TodoService{
     return false;
   }
 
+  addTodo(todo: Todo): void {
+    this.todos.unshift(todo);
+    this.emitTodos();
+  }
+
 }
