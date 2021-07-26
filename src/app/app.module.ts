@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 import { TodoComponent } from "./todo/todo.component";
 import { HeaderComponent } from './header/header.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TodoService } from "./services/todo.service";
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -20,6 +20,8 @@ export const ROUTES : Routes = [
   {path: 'todos', component: TodoComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'users', component: UsersComponent},
+  {path: 'add-user', component: AddUserComponent},
   {path: 'add-todo', component: AddTodoComponent},
   {path: 'single-todo/:id', component: SingleTodoComponent},
   {path: '', component: TodoComponent},
@@ -42,6 +44,7 @@ declarations: [
 imports: [
   BrowserModule,
   FormsModule,
+  ReactiveFormsModule,
   RouterModule.forRoot(ROUTES)
 ],
 // permets de rendre dispo d'autres services
