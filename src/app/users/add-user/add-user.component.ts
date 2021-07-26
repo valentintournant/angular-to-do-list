@@ -23,6 +23,12 @@ export class AddUserComponent implements OnInit {
       email: this.formBuilder.control(""),
       description: this.formBuilder.control(""),
       dateBirth: this.formBuilder.control(""),
+      address: this.formBuilder.group({
+        street: this.formBuilder.control(""),
+        state: this.formBuilder.control(""),
+        zip: this.formBuilder.control(""),
+        city: this.formBuilder.control(""),
+      })
     });
   }
 
