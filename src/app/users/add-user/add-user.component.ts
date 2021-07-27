@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -18,16 +18,16 @@ export class AddUserComponent implements OnInit {
 
   initUserForm() {
     this.userForm = this.formBuilder.group({
-      firstname: this.formBuilder.control(""),
-      lastname: this.formBuilder.control(""),
-      email: this.formBuilder.control(""),
-      description: this.formBuilder.control(""),
-      dateBirth: this.formBuilder.control(""),
+      firstname: this.formBuilder.control("", [Validators.required, Validators.minLength(5)]),
+      lastname: this.formBuilder.control("", [Validators.required, Validators.minLength(5)]),
+      email: this.formBuilder.control("", [Validators.required, Validators.email, Validators.minLength(5)]),
+      description: this.formBuilder.control("", [Validators.required, Validators.minLength(15)]),
+      dateBirth: this.formBuilder.control("", Validators.required),
       address: this.formBuilder.group({
-        street: this.formBuilder.control(""),
-        state: this.formBuilder.control(""),
-        zip: this.formBuilder.control(""),
-        city: this.formBuilder.control(""),
+        street: this.formBuilder.control("", Validators.required),
+        state: this.formBuilder.control("", Validators.required),
+        zip: this.formBuilder.control("", Validators.required),
+        city: this.formBuilder.control("", Validators.required),
       })
     });
   }
