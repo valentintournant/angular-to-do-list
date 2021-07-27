@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from './../../services/users.service';
 import { Address } from 'src/app/models/address.model';
 import { User } from 'src/app/models/user.models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -12,7 +14,9 @@ export class AddUserComponent implements OnInit {
 
   userForm: FormGroup | any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private userService: UsersService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.initUserForm();
@@ -37,12 +41,16 @@ export class AddUserComponent implements OnInit {
   onSubmit():void {
     const dataUser = this.userForm.value;
     const address = new Address(dataUser.street, dataUser.state, dataUser.zip, dataUser.city);
-    const user = new User(dataUser.firstname,
+    const newUser = new User(dataUser.firstname,
       dataUser.lastname,
       dataUser.email,
       address,
       dataUser.description,
       dataUser.dataBirth);
-    console.log(dataUser.firstname);
+      this.userService.addUser(newUser);
+      this.router.navigate(["users"])
+    // console.log(dataUser.firstname);
   }
 }
+
+
