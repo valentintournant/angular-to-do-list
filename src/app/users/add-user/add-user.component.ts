@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Address } from 'src/app/models/address.model';
+import { User } from 'src/app/models/user.models';
 
 @Component({
   selector: 'app-add-user',
@@ -33,7 +35,14 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit():void {
-    console.log(this.userForm.value);
+    const dataUser = this.userForm.value;
+    const address = new Address(dataUser.street, dataUser.state, dataUser.zip, dataUser.city);
+    const user = new User(dataUser.firstname,
+      dataUser.lastname,
+      dataUser.email,
+      address,
+      dataUser.description,
+      dataUser.dataBirth);
+    console.log(dataUser.firstname);
   }
-
 }
