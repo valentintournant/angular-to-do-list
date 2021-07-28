@@ -123,6 +123,7 @@ export class TodoService{
 
   emitTodos(){
     this.todoSubject.next(this.todos);
+    this.saveTodoFromServer();
   }
 
   onChangeStatus(i: number){
@@ -149,8 +150,16 @@ export class TodoService{
     this.emitTodos();
   }
 
-  saveTodo() {
-
+  saveTodoFromServer(): void {
+    this.httpClient.post("https://todo-list-app-6c5e4-default-rtdb.europe-west1.firebasedatabase.app/todos.json", this.todos)
+    .subscribe(
+      () => {
+        console.log("Données enregistrées avec succès !");
+      },
+      (error) => {
+        console.log("Erreur de sauvegarde : "+error)
+      }
+    );
   }
 
 }
