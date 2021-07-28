@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Todo } from "../models/todo.model";
@@ -22,7 +23,7 @@ export class TodoService{
   // lastUpdate2: any;
 
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     //si tu sais que la promese va se résoudre à chaques fois :
     // this.lastUpdate = Promise.resolve(new Date());
     // this.lastUpdate = Promise.reject("Pas de données disponible actuellement");
@@ -146,6 +147,10 @@ export class TodoService{
   addTodo(todo: Todo): void {
     this.todos.unshift(todo);
     this.emitTodos();
+  }
+
+  saveTodo() {
+
   }
 
 }
