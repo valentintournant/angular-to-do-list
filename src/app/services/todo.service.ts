@@ -123,7 +123,7 @@ export class TodoService{
 
   emitTodos(){
     this.todoSubject.next(this.todos);
-    this.saveTodoFromServer();
+    this.saveTodosFromServer();
   }
 
   onChangeStatus(i: number){
@@ -150,14 +150,29 @@ export class TodoService{
     this.emitTodos();
   }
 
-  saveTodoFromServer(): void {
-    this.httpClient.post("https://todo-list-app-6c5e4-default-rtdb.europe-west1.firebasedatabase.app/todos.json", this.todos)
+  saveTodosFromServer(): void {
+    this.httpClient.put("https://todo-list-app-6c5e4-default-rtdb.europe-west1.firebasedatabase.app/todos.json", this.todos)
     .subscribe(
       () => {
         console.log("Données enregistrées avec succès !");
       },
       (error) => {
         console.log("Erreur de sauvegarde : "+error)
+      }
+    );
+  }
+
+  getTodosFromServer(): void {
+    this.httpClient.get<Todo[]>("https://todo-list-app-6c5e4-default-rtdb.europe-west1.firebasedatabase.app/todos.json")
+    .subscribe(
+      (todoRecup: Todo[]) => {
+        this.todos = todoRecup;
+      },
+      (error) => {
+        console.log("Erreur de récupération des données : "+error)
+      },
+      () => {
+        console.log("Récupération des données terminée");
       }
     );
   }
