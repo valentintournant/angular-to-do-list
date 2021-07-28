@@ -169,6 +169,7 @@ export class TodoService{
     .subscribe(
       (todoRecup: Todo[]) => {
         this.todos = todoRecup;
+        this.emitTodos();
       },
       (error) => {
         console.log("Erreur de récupération des données : "+error)
