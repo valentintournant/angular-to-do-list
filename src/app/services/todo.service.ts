@@ -24,6 +24,8 @@ export class TodoService{
 
 
   constructor(private httpClient: HttpClient) {
+    this.getTodosFromServer();
+  }
     //si tu sais que la promese va se résoudre à chaques fois :
     // this.lastUpdate = Promise.resolve(new Date());
     // this.lastUpdate = Promise.reject("Pas de données disponible actuellement");
@@ -78,64 +80,63 @@ export class TodoService{
   //   });
   // }
 
-    setTimeout(()=>{
-      this.todos = [
-        {
-          todoName: "Projet 1",
-          todoStatus: true,
-          image: "http://placeimg.com/300/300/tech",
-          isModif: false,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-        {
-          todoName: "Projet 2",
-          todoStatus: false,
-          image: "http://placeimg.com/300/300/tech",
-          isModif: false,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-        {
-          todoName: "Projet 3",
-          todoStatus: true,
-          image: "http://placeimg.com/300/300/tech",
-          isModif: false,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-        {
-          todoName: "Projet 4",
-          todoStatus: false,
-          image: "http://placeimg.com/300/300/tech",
-          isModif: false,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-        {
-          todoName: "Projet 5",
-          todoStatus: true,
-          image: "http://placeimg.com/300/300/tech",
-          isModif: false,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-      ];
-      //les infos du dessus vont dans une fonction ui est ici :
-      this.emitTodos();
-    },3000);
-  }
+  //   setTimeout(()=>{
+  //     this.todos = [
+  //       {
+  //         todoName: "Projet 1",
+  //         todoStatus: true,
+  //         image: "http://placeimg.com/300/300/tech",
+  //         isModif: false,
+  //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  //       },
+  //       {
+  //         todoName: "Projet 2",
+  //         todoStatus: false,
+  //         image: "http://placeimg.com/300/300/tech",
+  //         isModif: false,
+  //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  //       },
+  //       {
+  //         todoName: "Projet 3",
+  //         todoStatus: true,
+  //         image: "http://placeimg.com/300/300/tech",
+  //         isModif: false,
+  //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  //       },
+  //       {
+  //         todoName: "Projet 4",
+  //         todoStatus: false,
+  //         image: "http://placeimg.com/300/300/tech",
+  //         isModif: false,
+  //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  //       },
+  //       {
+  //         todoName: "Projet 5",
+  //         todoStatus: true,
+  //         image: "http://placeimg.com/300/300/tech",
+  //         isModif: false,
+  //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  //       },
+  //     ];
+  //     //les infos du dessus vont dans une fonction ui est ici :
+  //     this.emitTodos();
+  //   },3000);
 
   emitTodos(){
     this.todoSubject.next(this.todos);
-    this.saveTodosFromServer();
   }
 
   onChangeStatus(i: number){
     this.todos[i].todoStatus = !this.todos[i].todoStatus;
     //vu que les données change on doit les émettre
     this.emitTodos();
+    this.saveTodosFromServer();
   }
 
   onChangeIsModif(i: any){
     this.todos[i].isModif = !this.todos[i].isModif;
     this.emitTodos();
-
+    this.saveTodosFromServer();
   }
 
   getTodo(index: number){
@@ -148,6 +149,7 @@ export class TodoService{
   addTodo(todo: Todo): void {
     this.todos.unshift(todo);
     this.emitTodos();
+    this.saveTodosFromServer();
   }
 
   saveTodosFromServer(): void {
