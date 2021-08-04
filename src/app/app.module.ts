@@ -14,20 +14,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { AddTodoComponent } from './todo/add-todo/add-todo.component';
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { AppRoutingModule } from './app-routing.module';
 
-
-export const ROUTES : Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'todos', component: TodoComponent},
-  {path: 'not-found', component: NotFoundComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'add-user', component: AddUserComponent},
-  {path: 'add-todo', component: AddTodoComponent},
-  {path: 'single-todo/:id', component: SingleTodoComponent},
-  {path: '', component: TodoComponent},
-  {path: '**', pathMatch:'full', redirectTo: 'not-found'}
-]
 
 @NgModule({
 declarations: [
@@ -47,7 +35,7 @@ imports: [
   FormsModule,
   ReactiveFormsModule,
   HttpClientModule,
-  RouterModule.forRoot(ROUTES)
+  AppRoutingModule
 ],
 // permets de rendre dispo d'autres services
 providers: [
